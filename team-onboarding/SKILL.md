@@ -1,10 +1,10 @@
 ---
 name: team-onboarding
-description: v1.1.0 — Run a step-by-step Multi-Agent Team Setup wizard in Telegram. Use when a user asks to set up or reconfigure agent names, vibes, emojis, missions, shared USER profile (single setup for all agents), and agent roster (standard + optional extras), or asks to re-run onboarding with replace-and-reapply behavior.
+description: v1.2.0 — Run a step-by-step Multi-Agent Team Setup wizard in Telegram. Use when a user asks to set up or reconfigure agent names, vibes, emojis, missions, shared USER profile (single setup for all agents), and agent roster (standard + optional extras), or asks to re-run onboarding with replace-and-reapply behavior.
 ---
 
 # team-onboarding
-Version: v1.1.0
+Version: v1.2.0
 
 Run this skill only on explicit onboarding intent (e.g., `setup agents`, `run onboarding`, `reconfigure agent team`).
 

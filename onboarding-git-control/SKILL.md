@@ -1,10 +1,10 @@
 ---
 name: onboarding-git-control
-description: v1.1.0 — Handle Telegram slash-style onboarding Git maintenance commands. Use when user sends `/onboarding-update`, `/onboarding-version`, or `/onboarding-install` to sync the team-onboarding skill from Git. Supports optional version/tag arguments for update/install.
+description: v1.2.0 — Handle Telegram slash-style onboarding Git maintenance commands. Use when user sends `/onboarding-update`, `/onboarding-version`, or `/onboarding-install` to sync the team-onboarding skill from Git. Supports optional version/tag arguments for update/install.
 ---
 
 # onboarding-git-control
-Version: v1.1.0
+Version: v1.2.0
 
 Run these commands by executing local scripts:
 
