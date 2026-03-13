@@ -1,46 +1,48 @@
 # onboarding
 
-Great — and no, you only do that once per machine.
+## Install (any machine — no SSH key needed)
 
-Here’s the SIMPLE README steps:
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/carterassist/onboarding/main/install/install.sh)
+```
+
+That's it. The repo is public and uses HTTPS — no credentials, no key setup.
 
 ---
 
-## Onboarding Git (Simple)
-
-### One-time (maintainer machine)
-
-1. Create SSH key (once):
+## Install a specific version/ref
 
 ```bash
-ssh-keygen -t ed25519 -C "onboarding-maintainer" -N "" -f ~/.ssh/id_ed25519
-```
-
-2. Add key to agent + copy public key:
-
-```bash
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
-cat ~/.ssh/id_ed25519.pub
-```
-
-3. Add that public key to GitHub SSH keys.
-
----
-
-### One-time (publish repo)
-
-```bash
-cd ~/.openclaw/workspace/projects/onboarding-git-setup/bootstrap-repo
-git remote set-url origin git@github.com:carterassist/onboarding.git
-git push -u origin main
+bash <(curl -fsSL https://raw.githubusercontent.com/carterassist/onboarding/main/install/install.sh) v1.2.0
 ```
 
 ---
 
-### Optional cleanup (remove old local non-Git onboarding skill)
+## Optional: register Telegram slash commands during install
 
-Run this on teammate machines before reinstall:
+```bash
+export TELEGRAM_BOT_TOKEN="<your_bot_token>"
+export REGISTER_TELEGRAM_COMMANDS=1
+bash <(curl -fsSL https://raw.githubusercontent.com/carterassist/onboarding/main/install/install.sh)
+```
+
+Registered commands:
+- `/onboarding`
+- `/onboarding_version`
+- `/onboarding_update`
+- `/onboarding_install`
+
+---
+
+## Update on any machine
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/carterassist/onboarding/main/install/update.sh)
+```
+
+---
+
+## Optional cleanup (remove legacy non-Git skill before reinstall)
 
 ```bash
 rm -rf ~/.openclaw/workspace/skills/team-onboarding
@@ -50,38 +52,18 @@ rmdir ~/.openclaw/workspace/skills/_legacy 2>/dev/null || true
 
 ---
 
-### Update onboarding on any machine
+## Contributing (maintainer)
 
-```bash
-bash ~/.openclaw/workspace/projects/onboarding-git-setup/install/update.sh v1.1.0
-bash ~/.openclaw/workspace/projects/onboarding-git-setup/install/version.sh
-```
+Changes to `main` require a pull request — direct pushes are blocked.
 
-### Optional: register Telegram slash commands during install
+1. Create a branch, make changes, open a PR
+2. Merge via GitHub
+3. Users get the update on next install/update run
 
-```bash
-export TELEGRAM_BOT_TOKEN="<your_bot_token>"
-export REGISTER_TELEGRAM_COMMANDS=1
-bash ~/.openclaw/workspace/projects/onboarding-git-setup/install/install.sh v1.2.0
-```
-
-Registered commands (Telegram-compatible):
-- `/onboarding`
-- `/onboarding_version`
-- `/onboarding_update`
-- `/onboarding_install`
-
----
-
-### Later changes (maintainer)
+To publish initial repo content (one-time, maintainer only):
 
 ```bash
 cd ~/.openclaw/workspace/projects/onboarding-git-setup/bootstrap-repo
-git add .
-git commit -m "onboarding: update"
-git push origin main
+git remote set-url origin https://github.com/carterassist/onboarding.git
+git push -u origin main
 ```
-
----
-
-That’s it.
