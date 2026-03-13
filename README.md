@@ -1,33 +1,22 @@
 # onboarding
 
-Bootstrap repository for OpenClaw `team-onboarding` skill.
+Great — and no, you only do that once per machine.
 
-## Structure
-
-- `team-onboarding/` — skill files synced into OpenClaw workspace
-
-Required by local updater:
-- `team-onboarding/VERSION`
+Here’s the SIMPLE README steps:
 
 ---
 
-## Maintainer SSH setup (private repo)
+## Onboarding Git (Simple)
 
-Generate key:
+### One-time (maintainer machine)
+
+1. Create SSH key (once):
 
 ```bash
-ssh-keygen -t ed25519 -C "onboarding-maintainer"
+ssh-keygen -t ed25519 -C "onboarding-maintainer" -N "" -f ~/.ssh/id_ed25519
 ```
 
-When prompted with:
-
-```text
-Enter file in which to save the key (/home/clawdbot/.ssh/id_ed25519):
-```
-
-press **Enter** to use the default path.
-
-Then run:
+2. Add key to agent + copy public key:
 
 ```bash
 eval "$(ssh-agent -s)"
@@ -35,60 +24,50 @@ ssh-add ~/.ssh/id_ed25519
 cat ~/.ssh/id_ed25519.pub
 ```
 
-Add the printed public key to GitHub:
-- GitHub → Settings → SSH and GPG keys → New SSH key
-
-Test:
-
-```bash
-ssh -T git@github.com
-```
+3. Add that public key to GitHub SSH keys.
 
 ---
 
-## Publish to GitHub (maintainer)
+### One-time (publish repo)
 
 ```bash
-git init
-git add .
-git commit -m "bootstrap onboarding skill"
-git branch -M main
-git remote add origin git@github.com:carterassist/onboarding.git
+cd ~/.openclaw/workspace/projects/onboarding-git-setup/bootstrap-repo
+git remote set-url origin git@github.com:carterassist/onboarding.git
 git push -u origin main
 ```
 
 ---
 
-## Versioning
+### Optional cleanup (remove old local non-Git onboarding skill)
 
-When you change the skill:
-1. bump `team-onboarding/VERSION`
-2. update `team-onboarding/CHANGELOG.md`
-3. tag release (recommended):
+Run this on teammate machines before reinstall:
 
 ```bash
-VER=$(cat team-onboarding/VERSION)
-git tag "v$VER"
-git push origin "v$VER"
+rm -rf ~/.openclaw/workspace/skills/team-onboarding
+rm -rf ~/.openclaw/workspace/skills/_legacy/team-onboarding-*
+rmdir ~/.openclaw/workspace/skills/_legacy 2>/dev/null || true
 ```
 
 ---
 
-## Team rollout (pull-only, no login)
-
-If teammates only update/install and do not push:
+### Update onboarding on any machine
 
 ```bash
 bash ~/.openclaw/workspace/projects/onboarding-git-setup/install/update.sh v1.1.0
 bash ~/.openclaw/workspace/projects/onboarding-git-setup/install/version.sh
 ```
 
-## Remove old non-Git local skill (one-time)
+---
 
-To avoid having two onboarding sources, archive the old local skill first:
+### Later changes (maintainer)
 
 ```bash
-mv ~/.openclaw/workspace/skills/team-onboarding ~/.openclaw/workspace/skills/_legacy/team-onboarding-$(date -u +%Y%m%dT%H%M%SZ)
+cd ~/.openclaw/workspace/projects/onboarding-git-setup/bootstrap-repo
+git add .
+git commit -m "onboarding: update"
+git push origin main
 ```
 
-Then reinstall from Git with `update.sh`.
+---
+
+That’s it.
