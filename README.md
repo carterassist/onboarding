@@ -82,3 +82,13 @@ If teammates only update/install and do not push:
 bash ~/.openclaw/workspace/projects/onboarding-git-setup/install/update.sh v1.1.0
 bash ~/.openclaw/workspace/projects/onboarding-git-setup/install/version.sh
 ```
+
+## Remove old non-Git local skill (one-time)
+
+To avoid having two onboarding sources, archive the old local skill first:
+
+```bash
+mv ~/.openclaw/workspace/skills/team-onboarding ~/.openclaw/workspace/skills/_legacy/team-onboarding-$(date -u +%Y%m%dT%H%M%SZ)
+```
+
+Then reinstall from Git with `update.sh`.
