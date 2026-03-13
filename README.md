@@ -57,6 +57,20 @@ bash ~/.openclaw/workspace/projects/onboarding-git-setup/install/update.sh v1.1.
 bash ~/.openclaw/workspace/projects/onboarding-git-setup/install/version.sh
 ```
 
+### Optional: register Telegram slash commands during install
+
+```bash
+export TELEGRAM_BOT_TOKEN="<your_bot_token>"
+export REGISTER_TELEGRAM_COMMANDS=1
+bash ~/.openclaw/workspace/projects/onboarding-git-setup/install/install.sh v1.2.0
+```
+
+Registered commands (Telegram-compatible):
+- `/onboarding`
+- `/onboarding_version`
+- `/onboarding_update`
+- `/onboarding_install`
+
 ---
 
 ### Later changes (maintainer)
